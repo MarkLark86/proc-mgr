@@ -1,0 +1,9 @@
+[project]
+name = "proc-mgr"
+version = "0.0.1"
+description = "Process Manager"
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["uv-build>=0.10.0"]
+build-backend = "uv_build"

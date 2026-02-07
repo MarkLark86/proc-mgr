@@ -1,5 +1,13 @@
 [project]
-name = "proc-mgr"
-version = "0.1.0"
-description = "Process Manager"
+name = "proc-mgr-workspace"
+version = "0.0.1"
+description = "Monorepo for Process Manager"
+readme = "README.ME"
+authors = [
+    {name = "Mark Pittaway", email = "mark.pittaway@gmail.com"}
+]
 requires-python = ">=3.10"
+dependencies = []
+
+[tool.uv.workspace]
+members = ["packages/*"]

@@ -1,0 +1,39 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+    strategy:
+      matrix:
+        package:
+          - packages/proc-mgr
+
+    permissions:
+      # This permission is required for trusted publishing
+      id-token: write
+      contents: read
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+
+    - name: Install Python
+      run: uv python install 3.14
+
+    - name: Build all packages
+      run: uv build --all-packages
+
+    - name: Publish all packages
+      run: uv publish
+      env:
+        UV_PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
